@@ -18,7 +18,7 @@ import java.util.Set;
 @Component
 public class SpringSecurityUserService implements UserDetailsService {
 
-    @Reference//远程dubbo调用，用户服务
+    @Reference//远程dubbo调用，用户服务 1
     private UserService userService;
     //根据用户名查询数据库用户信息
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
