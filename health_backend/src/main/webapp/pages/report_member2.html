@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- 引入样式 -->
+        <script src="../plugins/echarts/echarts.js"></script>
+    </head>
+    <body class="hold-transition">
+            <div class="app-container">
+                <div class="box">
+                    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                    <div id="chart1" style="height:300px; width: 200px"></div>
+                </div>
+            </div>
+
+    </body>
+    <!-- 引入组件库 -->
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart1 = echarts.init(document.getElementById('chart1'));
+            myChart1.setOption(
+                                {
+                                    title: {
+                                        text: '指标值'
+                                    },
+                                    tooltip: {},
+
+                                    legend: {
+                                        data:['会员数量']
+                                    },
+                                    xAxis: {
+                                        data: ["寸衫","羊毛衣","短袖"]//动态数据   data: res.data.data.kinds
+                                    },
+                                    yAxis: {
+                                        type:'value'
+                                    },
+                                    series: [{
+                                        name: '会员数量',
+                                        type: 'line',
+                                        data:[5,6,7],//动态数据   data: res.data.data.counts
+                                    }]
+        });
+    </script>
+</html>

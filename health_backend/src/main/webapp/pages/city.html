@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../plugins/elementui/index.js"></script>
+    <script src="../js/axios-0.18.0.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="../plugins/elementui/index.css">
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="app">
+    <template>
+        <el-select v-model="value1" @change="choseProvince"  multiple placeholder="选择省份">
+            <el-option
+                    v-for="item in sheng"
+                    :key="item.province"
+                    :label="item.label"
+                    :value="item.province">
+            </el-option>
+        </el-select>
+        <el-select
+                v-model="value2"
+                multiple
+                collapse-tags
+                style="margin-left: 20px;"
+                placeholder="选择市区" @change="choseCity">
+            <el-option
+                    v-for="item in shi"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
+        <el-select
+                v-model="value3"
+                multiple
+                collapse-tags
+                style="margin-left: 20px;"
+                placeholder="选择县" @change="choseBlock">
+            <el-option
+                    v-for="item in xian"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
+    </template>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data(){
+            return{
+            sheng: [],
+            shi: [],
+            xian: []
+        }},
+
+        created() {
+            axios.get("/china/findall.do").then((res) => {
+                if (res.data.flag) {
+                    this.sheng = res.data.data;
+                }else {
+                    this.$message.error(res.data.message)
+                }
+            })
+        },
+        method: {
+            choseProvince(province){
+                console.log(province);
+            }
+        }
+    })
+</script>
+</body>
+</html>

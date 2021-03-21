@@ -1,0 +1,4 @@
+# Project exclude paths
+/health_backend/target/
+/health_common/target/
+/health_interface/target/
